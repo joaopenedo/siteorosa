@@ -1,0 +1,223 @@
+
+/* RESET E CONFIGURAÇÕES GERAIS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  color: white;
+  position: relative;
+}
+
+/* BACKGROUND */
+body {
+  background: url('assets/fundo.svg') no-repeat center center;
+  background-size: cover;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to right,
+    rgba(0, 0, 0, 1) 6%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+/* LAYOUT BASE */
+.wrapper {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+.left {
+  width: 50%;
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.right {
+  width: 50%;
+}
+
+/* LOGO */
+.logo {
+  width: 119px;
+  height: auto;
+  margin-bottom: 2rem;
+  align-self: flex-start;     /* Garante alinhamento à esquerda */
+  margin-top: 0;              /* Zera o negativo */
+  position: absolute;         /* Novo posicionamento */
+  top: 5rem;                  /* Distância do topo */
+  left: 5rem;                 /* Alinhado com o padding da `.left` */
+}
+
+
+/* CONTEÚDO CENTRAL */
+.content {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10rem; /* ajuste fino da posição para a direita */
+  max-width: 440px;
+  text-align: left;
+  gap: 2rem;
+}
+
+/* TÍTULO */
+.title {
+  font-family: 'Poiret One', cursive;
+  font-size: 5rem;
+  white-space: nowrap;
+}
+
+/* CAIXA SOCIAL (Borda com furo central para o texto) */
+.contact-box {
+  --border-width:   2px;
+  --gap-width:      280px;
+  --offset:         0px;
+  --radius-left:    30px;
+  --radius-right:   30px;
+  --before-offset-x: -2px;
+  --after-offset-x:  -2px;
+
+  position: relative;
+  width: 100%;
+  height:40px;
+  max-width: 400px;
+  box-sizing: border-box;
+  text-align: center;
+  padding: calc(var(--radius-left) + 1rem) 2rem 4rem; /* ↑ mais espaço embaixo */
+  border: var(--border-width) solid #fff;
+  border-top: none;
+  border-radius: var(--radius-left) var(--radius-right)
+                 var(--radius-right) var(--radius-left);
+  background: transparent;
+}
+
+.contact-box {
+  --seg-left:  calc((100% - var(--gap-width))/2 + var(--offset));
+  --seg-right: calc((100% - var(--gap-width))/2 - var(--offset));
+}
+
+.contact-box::before {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--border-width));
+  left: var(--before-offset-x);
+  width: var(--seg-left);
+  height: calc(var(--radius-left) + var(--border-width));
+  border-top:    var(--border-width) solid #fff;
+  border-left:   var(--border-width) solid #fff;
+  border-top-left-radius:  var(--radius-left);
+}
+
+.contact-box::after {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--border-width));
+  right: var(--after-offset-x);
+  width: var(--seg-right);
+  height: calc(var(--radius-right) + var(--border-width));
+  border-top:    var(--border-width) solid #fff;
+  border-right:  var(--border-width) solid #fff;
+  border-top-right-radius: var(--radius-right);
+}
+
+.contact-box .headline {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  color: #fff;
+  font-style: italic;
+  font-size: 1.25rem;
+  text-align: center;
+}
+.social-box {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem; /* ← espaçamento entre os ícones */
+  margin-top: 0.5rem;
+  transform: translateY(-4px); /* se quiser subir os ícones */
+}
+.social-box img {
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: contain;
+}
+
+
+/* RESPONSIVO */
+@media (max-width: 1300px) {
+  .wrapper {
+    flex-direction: column;
+  }
+
+  .left, .right {
+    width: 100%;
+  }
+
+  .logo {
+  position: static;       /* Remove posicionamento absoluto */
+  margin: 0 auto 2rem;    /* Centraliza horizontalmente e mantém espaçamento abaixo */
+  display: block;
+  }
+
+  .left {
+  padding: 2rem;
+  align-items: center; /* Centraliza conteúdo horizontalmente */
+  text-align: center;
+}
+
+.content {
+  margin-left: 0;        /* Remove deslocamento lateral */
+  align-items: center;   /* Garante que os itens dentro fiquem centralizados */
+  text-align: center;
+}
+
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .contact-box .headline {
+    font-size: 1rem;
+  }
+
+  .contact-box {
+    --gap-width: 220px;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+
+  .social-icons img {
+    width: 2rem;
+    height: 2rem;
+  }
+  body {
+    background: url('assets/fundo-menor.svg') no-repeat;
+    background-size: cover;
+    background-position: center ; 
+  }
+
+  body::before {
+    background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 1) 10%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+}
+}
