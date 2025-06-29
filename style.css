@@ -26,10 +26,6 @@ body::before {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(to right,
-    rgba(0, 0, 0, 1) 6%,
-    rgba(0, 0, 0, 0) 100%
-  );
 }
 
 /* LAYOUT BASE */
@@ -156,8 +152,13 @@ body::before {
   width: 2.5rem;
   height: 2.5rem;
   object-fit: contain;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
+.social-box img:hover {
+  transform: scale(1.1);
+  filter: brightness(1.4);
+}
 
 /* RESPONSIVO */
 @media (max-width: 1300px) {
@@ -196,9 +197,26 @@ body::before {
     font-size: 1rem;
   }
 
-  .contact-box {
-    --gap-width: 220px;
-  }
+.contact-box {
+  max-width: 300px;            /* reduz a largura total */
+  --gap-width: 190px;          /* estreita o “furo” do topo */
+  --radius-left: 20px;         /* cantos mais suaves e menores */
+  --radius-right: 20px;
+  padding: calc(var(--radius-left) + 0.5rem) 1rem 2rem; /* padding menor */
+}
+
+.contact-box .headline {
+  font-size: 0.85rem; /* diminui o texto do subtítulo */
+  line-height: 1.2;   /* ajusta melhor a altura */
+  max-width: 90%;     /* evita texto estourar lateralmente */
+}
+
+.social-box img {
+  width: 1.8rem;  /* menor que 2rem */
+  height: 1.8rem;
+  margin-top: -0.5rem; /* sobe os ícones dentro da caixa */
+  transform: translateY(-2px); /* ajuste fino, opcional */
+}
 
   .social-icons {
     justify-content: center;
@@ -221,4 +239,4 @@ body::before {
     );
   }
 }
-
+}
